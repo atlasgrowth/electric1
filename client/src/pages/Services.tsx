@@ -2,7 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useLocation } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import { getBusinessData } from "@/lib/utils";
-import { Shield, Wrench, Zap, Settings, Activity, Power } from "lucide-react";
+import { Shield, Wrench, Zap, Settings, Activity, Power, Factory } from "lucide-react";
 
 const serviceTypes = {
   residential: {
@@ -42,8 +42,29 @@ const serviceTypes = {
       },
       {
         icon: Zap,
-        title: "Emergency Repairs",
-        description: "24/7 emergency electrical repair services"
+        title: "Electrical Maintenance",
+        description: "Regular maintenance and emergency repair services"
+      }
+    ]
+  },
+  industrial: {
+    title: "Industrial Electrical Services",
+    description: "Heavy-duty solutions for industrial facilities",
+    services: [
+      {
+        icon: Factory,
+        title: "Industrial Power Systems",
+        description: "High-capacity electrical systems for manufacturing and industrial facilities"
+      },
+      {
+        icon: Settings,
+        title: "Equipment Installation",
+        description: "Specialized installation for industrial machinery and equipment"
+      },
+      {
+        icon: Shield,
+        title: "Safety Compliance",
+        description: "Ensuring electrical systems meet industry safety standards"
       }
     ]
   }
@@ -65,7 +86,9 @@ export default function Services() {
     <div className="py-16">
       <div className="container">
         <div className="max-w-2xl mx-auto text-center mb-12">
-          <h1 className="text-4xl font-bold mb-4">{currentServices.title}</h1>
+          <h1 className="text-4xl font-bold mb-4">
+            {business?.basic_info.name} {currentServices.title}
+          </h1>
           <p className="text-muted-foreground">{currentServices.description}</p>
         </div>
 

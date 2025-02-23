@@ -25,7 +25,7 @@ export function About() {
               {business?.basic_info.city && ` in ${business.basic_info.city}`}
             </h2>
             <p className="text-muted-foreground mb-8">
-              With over two decades of experience in electrical services, our team of licensed professionals is dedicated to delivering exceptional quality workmanship and outstanding customer service. We take pride in our attention to detail and commitment to safety.
+              {business?.basic_info.name} brings over two decades of experience in electrical services. Our team of licensed professionals is dedicated to delivering exceptional quality workmanship and outstanding customer service. We take pride in our attention to detail and commitment to safety.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div className="bg-primary/5 p-6 rounded-lg">
@@ -35,9 +35,9 @@ export function About() {
                 </p>
               </div>
               <div className="bg-primary/5 p-6 rounded-lg">
-                <h3 className="font-semibold text-lg mb-2">24/7 Emergency Service</h3>
+                <h3 className="font-semibold text-lg mb-2">Prompt Response</h3>
                 <p className="text-sm text-muted-foreground">
-                  Available around the clock for urgent electrical needs
+                  Quick and reliable service when you need electrical assistance
                 </p>
               </div>
               <div className="bg-primary/5 p-6 rounded-lg">

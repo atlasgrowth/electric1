@@ -5,19 +5,6 @@ import { getBusinessData } from "@/lib/utils";
 import { ArrowRight, Phone } from "lucide-react";
 import { useEffect, useState } from "react";
 
-const slides = [
-  {
-    image: "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&q=80&w=2000",
-    title: "Professional Electrical Services",
-    subtitle: "Licensed & Insured Electricians at Your Service"
-  },
-  {
-    image: "https://images.unsplash.com/photo-1590959651373-a3db0f38c961?auto=format&fit=crop&q=80&w=2000",
-    title: "24/7 Emergency Service",
-    subtitle: "Fast Response When You Need Us Most"
-  }
-];
-
 export function Hero() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const { data: business } = useQuery({
@@ -25,6 +12,27 @@ export function Hero() {
     queryFn: getBusinessData,
     retry: false
   });
+
+  const slides = [
+    {
+      image: "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&q=80&w=2000",
+      title: "Residential Electrical Services",
+      subtitle: `${business?.basic_info.name || 'Professional'} residential electrical solutions for your home`,
+      link: "/services?type=residential"
+    },
+    {
+      image: "https://images.unsplash.com/photo-1590959651373-a3db0f38c961?auto=format&fit=crop&q=80&w=2000",
+      title: "Commercial Electrical Services",
+      subtitle: `Powering businesses with ${business?.basic_info.name || 'expert'} commercial solutions`,
+      link: "/services?type=commercial"
+    },
+    {
+      image: "https://images.unsplash.com/photo-1581094288338-2314dddb7ece?auto=format&fit=crop&q=80&w=2000",
+      title: "Industrial Electrical Services",
+      subtitle: `Industrial-grade electrical solutions by ${business?.basic_info.name || 'professionals'}`,
+      link: "/services?type=industrial"
+    }
+  ];
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -65,8 +73,8 @@ export function Hero() {
 
             <div className="flex flex-col sm:flex-row gap-4">
               <Button asChild size="lg" variant="default" className="bg-primary hover:bg-primary/90">
-                <Link href="/services">
-                  Get Started
+                <Link href={slides[currentSlide].link}>
+                  Learn More
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
@@ -77,7 +85,7 @@ export function Hero() {
                 className="text-white border-white hover:bg-white hover:text-primary"
               >
                 <Phone className="mr-2 h-5 w-5" />
-                {business?.basic_info.phone || 'Call Now'}
+                {business?.basic_info.phone || 'Contact Us'}
               </Button>
             </div>
           </div>
