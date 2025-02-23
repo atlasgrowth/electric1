@@ -1,4 +1,3 @@
-
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Phone } from "lucide-react";
@@ -15,19 +14,19 @@ import {
 
 const services = {
   residential: [
-    { title: "Electrical Panel Upgrades", href: "/services?type=residential#panel-upgrades" },
-    { title: "Safety Inspections", href: "/services?type=residential#safety" },
-    { title: "Wiring & Rewiring", href: "/services?type=residential#wiring" }
+    { title: "Electrical Panel Upgrades", href: "/residential#panel-upgrades" },
+    { title: "Safety Inspections", href: "/residential#safety" },
+    { title: "Wiring & Rewiring", href: "/residential#wiring" }
   ],
   commercial: [
-    { title: "Commercial Installation", href: "/services?type=commercial#installation" },
-    { title: "Energy Management", href: "/services?type=commercial#energy" },
-    { title: "Electrical Maintenance", href: "/services?type=commercial#maintenance" }
+    { title: "Commercial Installation", href: "/commercial#installation" },
+    { title: "Energy Management", href: "/commercial#energy" },
+    { title: "Electrical Maintenance", href: "/commercial#maintenance" }
   ],
   industrial: [
-    { title: "Industrial Power Systems", href: "/services?type=industrial#power-systems" },
-    { title: "Equipment Installation", href: "/services?type=industrial#equipment" },
-    { title: "Safety Compliance", href: "/services?type=industrial#compliance" }
+    { title: "Industrial Power Systems", href: "/industrial#power-systems" },
+    { title: "Equipment Installation", href: "/industrial#equipment" },
+    { title: "Safety Compliance", href: "/industrial#compliance" }
   ]
 };
 

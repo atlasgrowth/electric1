@@ -13,26 +13,26 @@ export function Hero() {
     retry: false
   });
 
-  const slides = [
-    {
-      image: "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&q=80&w=2000",
-      title: "Residential Electrical Services",
-      subtitle: `${business?.basic_info.name || 'Professional'} residential electrical solutions for your home`,
-      link: "/services?type=residential"
-    },
-    {
-      image: "https://images.unsplash.com/photo-1590959651373-a3db0f38c961?auto=format&fit=crop&q=80&w=2000",
-      title: "Commercial Electrical Services",
-      subtitle: `Powering businesses with ${business?.basic_info.name || 'expert'} commercial solutions`,
-      link: "/services?type=commercial"
-    },
-    {
-      image: "https://images.unsplash.com/photo-1581094288338-2314dddb7ece?auto=format&fit=crop&q=80&w=2000",
-      title: "Industrial Electrical Services",
-      subtitle: `Industrial-grade electrical solutions by ${business?.basic_info.name || 'professionals'}`,
-      link: "/services?type=industrial"
-    }
-  ];
+const slides = [
+  {
+    image: "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&q=80&w=2000",
+    title: "Residential Electrical Services",
+    subtitle: `${business?.basic_info.name || 'Professional'} residential electrical solutions for your home`,
+    link: "/residential"
+  },
+  {
+    image: "https://images.unsplash.com/photo-1590959651373-a3db0f38c961?auto=format&fit=crop&q=80&w=2000",
+    title: "Commercial Electrical Services",
+    subtitle: `Powering businesses with ${business?.basic_info.name || 'expert'} commercial solutions`,
+    link: "/commercial"
+  },
+  {
+    image: "https://images.unsplash.com/photo-1581094288338-2314dddb7ece?auto=format&fit=crop&q=80&w=2000",
+    title: "Industrial Electrical Services",
+    subtitle: `Industrial-grade electrical solutions by ${business?.basic_info.name || 'professionals'}`,
+    link: "/industrial"
+  }
+];
 
   useEffect(() => {
     const timer = setInterval(() => {
