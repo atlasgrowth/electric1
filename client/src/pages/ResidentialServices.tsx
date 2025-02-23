@@ -5,57 +5,66 @@ import { getBusinessData } from "@/lib/utils";
 import { Shield, Zap, Power, Wrench, HomeIcon, Phone, CheckCircle, BatteryCharging } from "lucide-react";
 import { Link } from "wouter";
 
-const mainServices = [
+const serviceCategories = [
   {
-    icon: Power,
-    title: "Electrical Panel Upgrades",
-    description: "Modern panel installations and upgrades for increased power capacity.",
-    features: [
-      "200-amp panel upgrades",
-      "Circuit breaker replacements",
-      "Code compliance updates",
-      "Safety inspections included"
+    title: "Installation Services",
+    description: "Professional installation of electrical systems and equipment",
+    services: [
+      {
+        icon: Power,
+        title: "Panel Installation",
+        description: "Modern electrical panel installations and upgrades",
+        features: ["200-amp service upgrades", "Panel replacements", "Circuit additions"]
+      },
+      {
+        icon: BatteryCharging,
+        title: "EV Charging",
+        description: "Electric vehicle charging station installation",
+        features: ["Level 2 chargers", "Circuit installation", "Smart charging setup"]
+      },
+      {
+        icon: Zap,
+        title: "New Construction",
+        description: "Complete electrical systems for new builds",
+        features: ["Full home wiring", "Smart home integration", "Code compliance"]
+      }
     ]
   },
   {
-    icon: Shield,
-    title: "Safety & Protection",
-    description: "Comprehensive electrical safety solutions for your home.",
-    features: [
-      "GFCI installation",
-      "Surge protection",
-      "Smoke detector installation",
-      "Child safety outlets"
+    title: "Maintenance & Safety",
+    description: "Keep your electrical systems safe and efficient",
+    services: [
+      {
+        icon: Shield,
+        title: "Safety Inspections",
+        description: "Comprehensive electrical system evaluations",
+        features: ["Annual inspections", "Safety certifications", "Code compliance checks"]
+      },
+      {
+        icon: HomeIcon,
+        title: "Preventive Care",
+        description: "Regular maintenance to prevent issues",
+        features: ["System testing", "Component updates", "Performance optimization"]
+      }
     ]
   },
   {
-    icon: HomeIcon,
-    title: "Whole House Wiring",
-    description: "Complete home electrical solutions from ground up.",
-    features: [
-      "New construction wiring",
-      "Home renovation electrical",
-      "Dedicated circuits",
-      "Smart home wiring"
+    title: "Emergency & Repairs",
+    description: "Fast response when you need it most",
+    services: [
+      {
+        icon: Wrench,
+        title: "24/7 Emergency",
+        description: "Round-the-clock emergency electrical services",
+        features: ["Immediate response", "Critical repairs", "Safety restoration"]
+      },
+      {
+        icon: Power,
+        title: "Troubleshooting",
+        description: "Expert diagnosis and repair solutions",
+        features: ["Circuit issues", "Equipment failures", "Wiring problems"]
+      }
     ]
-  }
-];
-
-const additionalServices = [
-  {
-    icon: Wrench,
-    title: "Repairs & Troubleshooting",
-    description: "Fast, reliable electrical repair services"
-  },
-  {
-    icon: Wrench,
-    title: "Fixture Installation",
-    description: "Professional lighting and fixture mounting"
-  },
-  {
-    icon: BatteryCharging,
-    title: "EV Charger Installation",
-    description: "Electric vehicle charging solutions"
   }
 ];
 
@@ -101,43 +110,33 @@ export default function ResidentialServices() {
       {/* Main Services Section */}
       <section className="py-24 bg-gradient-to-b from-gray-900 to-black text-white">
         <div className="container">
-          <h2 className="text-5xl font-bold text-center mb-16">Our Core Services</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {mainServices.map((service, index) => (
-              <div key={index} className="p-8 rounded-2xl bg-gray-800/50 backdrop-blur-sm hover:bg-gray-700/50 transition-all duration-300 border border-gray-700/50 group">
-                <service.icon className="h-12 w-12 text-primary mb-6 transform group-hover:scale-110 transition-transform duration-300" />
-                <h3 className="text-2xl font-bold mb-4">{service.title}</h3>
-                <p className="text-gray-300 mb-8 text-lg">{service.description}</p>
-                <ul className="space-y-4">
-                  {service.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-center gap-3 text-gray-200">
-                      <div className="h-2 w-2 bg-primary rounded-full" />
-                      <span className="group-hover:text-white transition-colors">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
+          <h2 className="text-5xl font-bold text-center mb-16">Our Services</h2>
+          {serviceCategories.map((category, index) => (
+            <div key={index}>
+              <h3 className="text-4xl font-bold text-center mb-8">{category.title}</h3>
+              <p className="text-lg text-center mb-12">{category.description}</p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {category.services.map((service, idx) => (
+                  <div key={idx} className="p-8 rounded-2xl bg-gray-800/50 backdrop-blur-sm hover:bg-gray-700/50 transition-all duration-300 border border-gray-700/50 group">
+                    <service.icon className="h-12 w-12 text-primary mb-6 transform group-hover:scale-110 transition-transform duration-300" />
+                    <h3 className="text-2xl font-bold mb-4">{service.title}</h3>
+                    <p className="text-gray-300 mb-8 text-lg">{service.description}</p>
+                    <ul className="space-y-4">
+                      {service.features.map((feature, i) => (
+                        <li key={i} className="flex items-center gap-3 text-gray-200">
+                          <div className="h-2 w-2 bg-primary rounded-full" />
+                          <span className="group-hover:text-white transition-colors">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </section>
 
-      {/* Additional Services */}
-      <section className="py-24 bg-gradient-to-b from-black to-gray-900 text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(200,200,255,0.1),transparent_50%)]" />
-        <div className="container relative z-10">
-          <h2 className="text-5xl font-bold text-center mb-16">Additional Services</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {additionalServices.map((service, index) => (
-              <div key={index} className="p-8 rounded-2xl bg-gray-800/50 backdrop-blur-sm hover:bg-gray-700/50 transition-all duration-300 border border-gray-700/50 group hover:transform hover:scale-105">
-                <service.icon className="h-12 w-12 text-primary mb-6 transform group-hover:rotate-12 transition-transform duration-300" />
-                <h3 className="text-2xl font-bold mb-4">{service.title}</h3>
-                <p className="text-gray-300 text-lg leading-relaxed">{service.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* CTA Section */}
       <section className="py-20 bg-primary text-white">
