@@ -99,45 +99,40 @@ export default function ResidentialServices() {
       </div>
 
       {/* Main Services Section */}
-      <section className="py-20 bg-gradient-to-b from-gray-50 to-white">
+      <section className="py-24 bg-gradient-to-b from-gray-900 to-black text-white">
         <div className="container">
-          <h2 className="text-4xl font-bold text-center mb-16">Our Core Services</h2>
+          <h2 className="text-5xl font-bold text-center mb-16">Our Core Services</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {mainServices.map((service, index) => (
-              <Card key={index} className="hover:shadow-xl transition-shadow duration-300">
-                <CardHeader>
-                  <div className="h-14 w-14 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                    <service.icon className="h-7 w-7 text-primary" />
-                  </div>
-                  <CardTitle className="text-2xl mb-2">{service.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-600 mb-6">{service.description}</p>
-                  <ul className="space-y-3">
-                    {service.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-center gap-2">
-                        <CheckCircle className="h-5 w-5 text-green-500" />
-                        <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
+              <div key={index} className="p-8 rounded-2xl bg-gray-800/50 backdrop-blur-sm hover:bg-gray-700/50 transition-all duration-300 border border-gray-700/50 group">
+                <service.icon className="h-12 w-12 text-primary mb-6 transform group-hover:scale-110 transition-transform duration-300" />
+                <h3 className="text-2xl font-bold mb-4">{service.title}</h3>
+                <p className="text-gray-300 mb-8 text-lg">{service.description}</p>
+                <ul className="space-y-4">
+                  {service.features.map((feature, idx) => (
+                    <li key={idx} className="flex items-center gap-3 text-gray-200">
+                      <div className="h-2 w-2 bg-primary rounded-full" />
+                      <span className="group-hover:text-white transition-colors">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
       {/* Additional Services */}
-      <section className="py-16 bg-gray-900 text-white">
-        <div className="container">
-          <h2 className="text-3xl font-bold text-center mb-12">Additional Services</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <section className="py-24 bg-gradient-to-b from-black to-gray-900 text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(200,200,255,0.1),transparent_50%)]" />
+        <div className="container relative z-10">
+          <h2 className="text-5xl font-bold text-center mb-16">Additional Services</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {additionalServices.map((service, index) => (
-              <div key={index} className="p-6 rounded-lg bg-gray-800 hover:bg-gray-700 transition-colors">
-                <service.icon className="h-8 w-8 text-primary mb-4" />
-                <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
-                <p className="text-gray-300">{service.description}</p>
+              <div key={index} className="p-8 rounded-2xl bg-gray-800/50 backdrop-blur-sm hover:bg-gray-700/50 transition-all duration-300 border border-gray-700/50 group hover:transform hover:scale-105">
+                <service.icon className="h-12 w-12 text-primary mb-6 transform group-hover:rotate-12 transition-transform duration-300" />
+                <h3 className="text-2xl font-bold mb-4">{service.title}</h3>
+                <p className="text-gray-300 text-lg leading-relaxed">{service.description}</p>
               </div>
             ))}
           </div>
