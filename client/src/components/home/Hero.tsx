@@ -56,7 +56,7 @@ export function Hero() {
             backgroundPosition: 'center'
           }}
         >
-          <div className="absolute inset-0 bg-black/50" />
+          <div className="absolute inset-0 bg-black/60" />
         </div>
       ))}
 
@@ -72,7 +72,7 @@ export function Hero() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button asChild size="lg" variant="default" className="bg-primary hover:bg-primary/90">
+              <Button asChild size="lg" className="bg-yellow-400 hover:bg-yellow-500 text-black">
                 <Link href={slides[currentSlide].link}>
                   Learn More
                   <ArrowRight className="ml-2 h-5 w-5" />
@@ -82,7 +82,8 @@ export function Hero() {
               <Button 
                 size="lg" 
                 variant="outline" 
-                className="text-white border-white hover:bg-white hover:text-primary"
+                className="bg-black/30 backdrop-blur-sm text-white border-white hover:bg-white hover:text-black transition-colors"
+                onClick={() => window.location.href = `tel:${business?.basic_info.phone}`}
               >
                 <Phone className="mr-2 h-5 w-5" />
                 {business?.basic_info.phone || 'Contact Us'}
