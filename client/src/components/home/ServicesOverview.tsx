@@ -77,7 +77,7 @@ export function ServicesOverview() {
                 <Link href={`${service.link}${businessId ? `?s=${businessId}` : ''}`}>
                   <Button 
                     variant="outline" 
-                    className="w-full text-white border-white hover:bg-white hover:text-black transition-colors"
+                    className="w-full bg-white/10 text-white border-2 border-white hover:bg-white hover:text-black transition-all duration-300 font-semibold backdrop-blur-sm"
                   >
                     Learn More
                   </Button>

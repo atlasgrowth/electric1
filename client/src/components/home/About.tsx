@@ -9,22 +9,22 @@ export function About() {
   });
 
   return (
-    <section className="py-24 bg-gradient-to-b from-gray-50 to-white">
-      <div className="container">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+    <section className="py-32 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
+      <div className="container relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
           <div 
-            className="h-[500px] bg-cover bg-center rounded-2xl shadow-2xl transform hover:scale-105 transition-transform duration-500"
+            className="h-[600px] bg-cover bg-center rounded-3xl shadow-2xl transform hover:scale-105 transition-transform duration-500 border-8 border-white"
             style={{ 
               backgroundImage: 'url(https://assets.cdn.filesafe.space/A9rd4HdLD0sTvRuuQFZl/media/65146ad76f44431d743d2eae.jpeg)',
               backgroundPosition: 'center 20%'
             }}
           />
           <div>
-            <h2 className="text-4xl font-bold mb-6 text-gray-900">
+            <h2 className="text-5xl font-bold mb-8 text-gray-900 leading-tight">
               About {business?.basic_info.name}
               {business?.basic_info.city && ` in ${business.basic_info.city}`}
             </h2>
-            <p className="text-lg text-gray-600 mb-10 leading-relaxed">
+            <p className="text-xl text-gray-600 mb-12 leading-relaxed">
               {business?.basic_info.name} brings over two decades of experience in electrical services. Our team of licensed professionals is dedicated to delivering exceptional quality workmanship and outstanding customer service. We take pride in our attention to detail and commitment to safety.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
