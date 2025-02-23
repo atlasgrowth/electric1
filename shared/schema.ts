@@ -15,6 +15,32 @@ export const businessDataSchema = z.object({
     reviewer_name: z.string(),
     date: z.string(),
   })).optional(),
+  // Add image fields for customization
+  images: z.object({
+    hero_slides: z.array(z.object({
+      url: z.string(),
+      title: z.string(),
+      description: z.string(),
+    })),
+    residential_services: z.array(z.object({
+      url: z.string(),
+      service_name: z.string(),
+    })),
+    commercial_services: z.array(z.object({
+      url: z.string(),
+      service_name: z.string(),
+    })),
+    industrial_services: z.array(z.object({
+      url: z.string(),
+      service_name: z.string(),
+    })),
+    about_section: z.string(),
+  }).optional(),
+  social_media: z.object({
+    facebook: z.string().optional(),
+    instagram: z.string().optional(),
+    reviews_link: z.string().optional(),
+  }).optional(),
 });
 
 export type BusinessData = z.infer<typeof businessDataSchema>;

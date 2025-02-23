@@ -73,10 +73,10 @@ const slides = [
 
             <div className="flex flex-col sm:flex-row gap-4">
               <Button asChild size="lg" className="bg-yellow-400 hover:bg-yellow-500 text-black">
-                <a href={`${slides[currentSlide].link}${business?.basic_info.s ? `?s=${business?.basic_info.s}` : ''}`}>
+                <Link href={`${slides[currentSlide].link}${window.location.search}`}>
                   Learn More
                   <ArrowRight className="ml-2 h-5 w-5" />
-                </a>
+                </Link>
               </Button>
 
               <Button 
