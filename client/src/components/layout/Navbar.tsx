@@ -1,3 +1,4 @@
+
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Phone } from "lucide-react";
@@ -51,7 +52,9 @@ export function Navbar() {
             <NavigationMenuList>
               <NavigationMenuItem>
                 <Link href="/">
-                  <Button variant="ghost" className="text-sm font-medium">Home</Button>
+                  <NavigationMenuLink className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus:outline-none focus:bg-accent focus:text-accent-foreground disabled:opacity-50 disabled:pointer-events-none bg-transparent hover:bg-accent hover:text-accent-foreground h-10 py-2 px-4 group w-max">
+                    Home
+                  </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
 
@@ -60,13 +63,7 @@ export function Navbar() {
                 <NavigationMenuContent>
                   <ul className="grid w-[300px] gap-3 p-4">
                     {services.residential.map((item) => (
-                      <li key={item.title}>
-                        <Link href={item.href}>
-                          <NavigationMenuLink className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                            {item.title}
-                          </NavigationMenuLink>
-                        </Link>
-                      </li>
+                      <ListItem key={item.title} href={item.href} title={item.title} />
                     ))}
                   </ul>
                 </NavigationMenuContent>
@@ -77,13 +74,7 @@ export function Navbar() {
                 <NavigationMenuContent>
                   <ul className="grid w-[300px] gap-3 p-4">
                     {services.commercial.map((item) => (
-                      <li key={item.title}>
-                        <Link href={item.href}>
-                          <NavigationMenuLink className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                            {item.title}
-                          </NavigationMenuLink>
-                        </Link>
-                      </li>
+                      <ListItem key={item.title} href={item.href} title={item.title} />
                     ))}
                   </ul>
                 </NavigationMenuContent>
@@ -94,13 +85,7 @@ export function Navbar() {
                 <NavigationMenuContent>
                   <ul className="grid w-[300px] gap-3 p-4">
                     {services.industrial.map((item) => (
-                      <li key={item.title}>
-                        <Link href={item.href}>
-                          <NavigationMenuLink className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                            {item.title}
-                          </NavigationMenuLink>
-                        </Link>
-                      </li>
+                      <ListItem key={item.title} href={item.href} title={item.title} />
                     ))}
                   </ul>
                 </NavigationMenuContent>
@@ -108,7 +93,9 @@ export function Navbar() {
 
               <NavigationMenuItem>
                 <Link href="/contact">
-                  <Button variant="ghost" className="text-sm font-medium">Contact</Button>
+                  <NavigationMenuLink className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus:outline-none focus:bg-accent focus:text-accent-foreground disabled:opacity-50 disabled:pointer-events-none bg-transparent hover:bg-accent hover:text-accent-foreground h-10 py-2 px-4 group w-max">
+                    Contact
+                  </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
             </NavigationMenuList>
@@ -125,5 +112,17 @@ export function Navbar() {
         </Button>
       </div>
     </nav>
+  );
+}
+
+function ListItem({ href, title }: { href: string; title: string }) {
+  return (
+    <li>
+      <Link href={href}>
+        <NavigationMenuLink className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+          {title}
+        </NavigationMenuLink>
+      </Link>
+    </li>
   );
 }
