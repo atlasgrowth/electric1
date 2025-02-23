@@ -3,6 +3,32 @@ import { Button } from "@/components/ui/button";
 import { Phone } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { getBusinessData } from "@/lib/utils";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "@/components/ui/navigation-menu";
+
+const services = {
+  residential: [
+    { title: "Electrical Panel Upgrades", href: "/services?type=residential#panel-upgrades" },
+    { title: "Safety Inspections", href: "/services?type=residential#safety" },
+    { title: "Wiring & Rewiring", href: "/services?type=residential#wiring" }
+  ],
+  commercial: [
+    { title: "Commercial Installation", href: "/services?type=commercial#installation" },
+    { title: "Energy Management", href: "/services?type=commercial#energy" },
+    { title: "Electrical Maintenance", href: "/services?type=commercial#maintenance" }
+  ],
+  industrial: [
+    { title: "Industrial Power Systems", href: "/services?type=industrial#power-systems" },
+    { title: "Equipment Installation", href: "/services?type=industrial#equipment" },
+    { title: "Safety Compliance", href: "/services?type=industrial#compliance" }
+  ]
+};
 
 export function Navbar() {
   const { data: business } = useQuery({
@@ -20,16 +46,74 @@ export function Navbar() {
           </Button>
         </Link>
 
-        <div className="hidden md:flex space-x-6 items-center">
-          <Link href="/">
-            <Button variant="ghost" className="text-sm font-medium">Home</Button>
-          </Link>
-          <Link href="/services">
-            <Button variant="ghost" className="text-sm font-medium">Services</Button>
-          </Link>
-          <Link href="/contact">
-            <Button variant="ghost" className="text-sm font-medium">Contact</Button>
-          </Link>
+        <div className="hidden md:flex items-center space-x-4">
+          <NavigationMenu>
+            <NavigationMenuList>
+              <NavigationMenuItem>
+                <Link href="/">
+                  <Button variant="ghost" className="text-sm font-medium">Home</Button>
+                </Link>
+              </NavigationMenuItem>
+
+              <NavigationMenuItem>
+                <NavigationMenuTrigger>Residential</NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <ul className="grid w-[300px] gap-3 p-4">
+                    {services.residential.map((item) => (
+                      <li key={item.title}>
+                        <Link href={item.href}>
+                          <NavigationMenuLink className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                            {item.title}
+                          </NavigationMenuLink>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+
+              <NavigationMenuItem>
+                <NavigationMenuTrigger>Commercial</NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <ul className="grid w-[300px] gap-3 p-4">
+                    {services.commercial.map((item) => (
+                      <li key={item.title}>
+                        <Link href={item.href}>
+                          <NavigationMenuLink className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                            {item.title}
+                          </NavigationMenuLink>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+
+              <NavigationMenuItem>
+                <NavigationMenuTrigger>Industrial</NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <ul className="grid w-[300px] gap-3 p-4">
+                    {services.industrial.map((item) => (
+                      <li key={item.title}>
+                        <Link href={item.href}>
+                          <NavigationMenuLink className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                            {item.title}
+                          </NavigationMenuLink>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+
+              <NavigationMenuItem>
+                <Link href="/contact">
+                  <Button variant="ghost" className="text-sm font-medium">Contact</Button>
+                </Link>
+              </NavigationMenuItem>
+            </NavigationMenuList>
+          </NavigationMenu>
+
           <Button size="sm" variant="default">
             <Phone className="mr-2 h-4 w-4" />
             {business?.basic_info.phone || 'Loading...'}
