@@ -7,7 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Phone, Mail, Clock } from "lucide-react";
 import { getBusinessData } from "@/lib/utils";
 
-export default function ContactSection() {
+export function ContactSection() {
   const { data: business } = useQuery({
     queryKey: ['business'],
     queryFn: getBusinessData,

@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getBusinessData } from "@/lib/utils";
 import { Shield, Zap, Power, Wrench, HomeIcon, Phone, CheckCircle, BatteryCharging, Clock } from "lucide-react";
 import { Link } from "wouter";
-//import ContactSection from "@/components/home/ContactSection";
+//import { ContactSection } from "@/components/home/ContactSection";
 //import Reviews from "@/components/home/Reviews";
 
 const serviceCategories = [
