@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -6,7 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Phone, Mail, Clock } from "lucide-react";
 import { getBusinessData } from "@/lib/utils";
 
-export function ContactSection() {
+export default function ContactSection() {
   const { data: business } = useQuery({
     queryKey: ['business'],
     queryFn: getBusinessData,
