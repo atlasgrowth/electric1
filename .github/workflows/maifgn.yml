@@ -1,0 +1,38 @@
+name: Clean and Deploy
+
+on:
+  workflow_dispatch:
+
+jobs:
+  clean-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Delete gh-pages branch
+        run: |
+          git push origin --delete gh-pages || true
+          
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Clean and Install
+        run: |
+          rm -rf dist public .cache node_modules
+          rm -rf */*/node_modules
+          npm install
+
+      - name: Create fresh structure
+        run: |
+          mkdir -p dist
+          cp client/src/index.html dist/
+          cp -r client/src/* dist/
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          force_orphan: true
