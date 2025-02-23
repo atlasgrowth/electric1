@@ -1,9 +1,8 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useQuery } from "@tanstack/react-query";
 import { getBusinessData } from "@/lib/utils";
-import { Shield, Zap, Power, Tool, HomeIcon, Wrench, Phone, CheckCircle, BatteryCharging } from "lucide-react";
+import { Shield, Zap, Power, Wrench, HomeIcon, Phone, CheckCircle, BatteryCharging } from "lucide-react";
 import { Link } from "wouter";
 
 const mainServices = [
@@ -44,7 +43,7 @@ const mainServices = [
 
 const additionalServices = [
   {
-    icon: Tool,
+    icon: Wrench,
     title: "Repairs & Troubleshooting",
     description: "Fast, reliable electrical repair services"
   },
@@ -79,7 +78,7 @@ export default function ResidentialServices() {
         >
           <div className="absolute inset-0 bg-black/60" />
         </div>
-        
+
         <div className="container relative z-10 text-center text-white">
           <h1 className="text-5xl font-bold mb-6">
             Residential Electrical Services
