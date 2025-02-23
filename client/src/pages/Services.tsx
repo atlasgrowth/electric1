@@ -13,19 +13,37 @@ const serviceTypes = {
       {
         icon: Power,
         title: "Electrical Panel Upgrades",
-        description: "Modern panel installations and upgrades for increased power capacity",
+        description: "Modern panel installations and upgrades for increased power capacity. We specialize in upgrading outdated electrical panels to meet modern power demands, ensuring your home's electrical system is safe and efficient.",
+        features: [
+          "200-amp panel upgrades",
+          "Circuit breaker replacements",
+          "Code compliance updates",
+          "Safety inspections included"
+        ],
         id: "panel-upgrades"
       },
       {
         icon: Shield,
         title: "Safety Inspections",
-        description: "Comprehensive electrical safety inspections and repairs",
+        description: "Comprehensive electrical safety inspections and repairs to protect your home and family. Our thorough inspection process identifies potential hazards before they become dangerous.",
+        features: [
+          "Complete system evaluation",
+          "GFCI protection assessment",
+          "Smoke detector testing",
+          "Written inspection report"
+        ],
         id: "safety"
       },
       {
         icon: Wrench,
         title: "Wiring & Rewiring",
-        description: "Expert installation of new wiring and rewiring services",
+        description: "Expert installation of new wiring and rewiring services for older homes. We ensure your electrical system meets modern standards and can handle today's technology demands.",
+        features: [
+          "Whole-house rewiring",
+          "Outlet installation",
+          "Lighting circuit installation",
+          "Dedicated circuits for appliances"
+        ],
         id: "wiring"
       }
     ]
@@ -37,19 +55,37 @@ const serviceTypes = {
       {
         icon: Settings,
         title: "Commercial Installation",
-        description: "Complete electrical system installation for commercial properties",
+        description: "Complete electrical system installation for commercial properties. We handle everything from new construction to renovations, ensuring your business has reliable power.",
+        features: [
+          "New construction wiring",
+          "Office building setup",
+          "Retail space electrical",
+          "Emergency backup systems"
+        ],
         id: "installation"
       },
       {
         icon: Activity,
         title: "Energy Management",
-        description: "Energy-efficient solutions and monitoring systems",
+        description: "Energy-efficient solutions and monitoring systems to reduce costs and improve sustainability.",
+        features: [
+          "Energy audits",
+          "LED lighting upgrades",
+          "Smart system installation",
+          "Power consumption monitoring"
+        ],
         id: "energy"
       },
       {
         icon: Zap,
         title: "Electrical Maintenance",
-        description: "Regular maintenance and emergency repair services",
+        description: "Regular maintenance and emergency repair services to keep your business running smoothly.",
+        features: [
+          "Preventive maintenance",
+          "Emergency repairs",
+          "System upgrades",
+          "Code compliance checks"
+        ],
         id: "maintenance"
       }
     ]
@@ -61,19 +97,37 @@ const serviceTypes = {
       {
         icon: Factory,
         title: "Industrial Power Systems",
-        description: "High-capacity electrical systems for manufacturing and industrial facilities",
+        description: "High-capacity electrical systems for manufacturing and industrial facilities. We specialize in complex industrial power requirements.",
+        features: [
+          "High-voltage installations",
+          "Power distribution systems",
+          "Industrial controls",
+          "Load calculations"
+        ],
         id: "power-systems"
       },
       {
         icon: Settings,
         title: "Equipment Installation",
-        description: "Specialized installation for industrial machinery and equipment",
+        description: "Specialized installation for industrial machinery and equipment, ensuring optimal performance and safety.",
+        features: [
+          "Machine power setup",
+          "Control panel installation",
+          "Motor controls",
+          "Equipment testing"
+        ],
         id: "equipment"
       },
       {
         icon: Shield,
         title: "Safety Compliance",
-        description: "Ensuring electrical systems meet industry safety standards",
+        description: "Ensuring electrical systems meet industry safety standards and regulations.",
+        features: [
+          "OSHA compliance",
+          "Safety system installation",
+          "Regular inspections",
+          "Documentation"
+        ],
         id: "compliance"
       }
     ]
@@ -104,33 +158,54 @@ export default function Services() {
   }, [hash]);
 
   return (
-    <div className="pt-24 pb-16">
+    <div className="pt-24 pb-16 bg-gray-50">
       <div className="container">
-        <div className="max-w-2xl mx-auto text-center mb-12">
-          <h1 className="text-4xl font-bold mb-4">
+        <div className="max-w-3xl mx-auto text-center mb-16">
+          <h1 className="text-4xl font-bold mb-4 text-gray-900">
             {business?.basic_info.name} {currentServices.title}
           </h1>
-          <p className="text-muted-foreground">{currentServices.description}</p>
+          <p className="text-xl text-gray-600">{currentServices.description}</p>
+          {business?.basic_info.city && (
+            <p className="text-lg text-gray-500 mt-2">Serving {business.basic_info.city} and surrounding areas</p>
+          )}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {currentServices.services.map((service, index) => (
-            <Card key={index} id={service.id}>
+            <Card 
+              key={index} 
+              id={service.id}
+              className="bg-white hover:shadow-xl transition-shadow duration-300"
+            >
               <CardHeader>
-                <service.icon className="h-10 w-10 text-primary mb-4" />
-                <CardTitle>{service.title}</CardTitle>
+                <div className="h-16 w-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+                  <service.icon className="h-8 w-8 text-primary" />
+                </div>
+                <CardTitle className="text-2xl mb-2">{service.title}</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground">{service.description}</p>
+                <p className="text-gray-600 mb-6">{service.description}</p>
+                <div className="space-y-2">
+                  {service.features.map((feature, idx) => (
+                    <div key={idx} className="flex items-center gap-2">
+                      <div className="h-2 w-2 bg-primary rounded-full" />
+                      <p className="text-gray-700">{feature}</p>
+                    </div>
+                  ))}
+                </div>
               </CardContent>
             </Card>
           ))}
         </div>
 
-        <div className="mt-12 text-center">
-          <p className="text-lg mb-4">
-            Contact us at {business?.basic_info.phone} to schedule a consultation
+        <div className="mt-16 text-center bg-primary/5 p-8 rounded-xl">
+          <h2 className="text-2xl font-bold mb-4">Ready to Get Started?</h2>
+          <p className="text-lg text-gray-600 mb-6">
+            Contact us for a free consultation and estimate
           </p>
+          <div className="text-2xl font-bold text-primary">
+            {business?.basic_info.phone}
+          </div>
         </div>
       </div>
     </div>
