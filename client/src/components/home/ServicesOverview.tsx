@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
-import { Home, Building2, Zap, Wrench } from "lucide-react";
+import { Home, Building2, Zap } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { getBusinessData } from "@/lib/utils";
 
@@ -10,21 +10,21 @@ const services = [
     icon: Home,
     title: "Residential Services",
     description: "Complete electrical solutions for your home, from repairs to installations.",
-    link: "/services?type=residential",
+    link: "/residential",
     image: "/images/residential-electrical.jpg"
   },
   {
     icon: Building2,
     title: "Commercial Services",
     description: "Professional electrical services for businesses of all sizes.",
-    link: "/services?type=commercial",
+    link: "/commercial",
     image: "/images/commercial-electrical.jpg"
   },
   {
     icon: Zap,
     title: "Industrial Services",
     description: "Heavy-duty electrical solutions for manufacturing and industrial facilities.",
-    link: "/services?type=industrial",
+    link: "/industrial",
     image: "/images/industrial-electrical.jpg"
   }
 ];
@@ -35,6 +35,10 @@ export function ServicesOverview() {
     queryFn: getBusinessData,
     retry: false
   });
+
+  // Get the business ID from the URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const businessId = urlParams.get('s');
 
   return (
     <section 
@@ -70,7 +74,7 @@ export function ServicesOverview() {
               </CardHeader>
               <CardContent className="relative z-10">
                 <p className="text-gray-200 mb-4">{service.description}</p>
-                <Link href={service.link}>
+                <Link href={`${service.link}${businessId ? `?s=${businessId}` : ''}`}>
                   <Button 
                     variant="outline" 
                     className="w-full text-white border-white hover:bg-white hover:text-black transition-colors"
