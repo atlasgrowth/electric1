@@ -4,8 +4,8 @@ import { useQuery } from "@tanstack/react-query";
 import { getBusinessData } from "@/lib/utils";
 import { Shield, Zap, Power, Wrench, HomeIcon, Phone, CheckCircle, BatteryCharging, Clock } from "lucide-react";
 import { Link } from "wouter";
-import ContactSection from "@/components/home/ContactSection";
-import Reviews from "@/components/home/Reviews";
+//import ContactSection from "@/components/home/ContactSection";
+//import Reviews from "@/components/home/Reviews";
 
 const serviceCategories = [
   {
@@ -121,11 +121,15 @@ export default function ResidentialServices() {
       ))}
 
       {/* Reviews Section */}
-      <Reviews />
+      {/*<Reviews />*/}
 
       {/* Contact Form Section */}
       <div id="contact">
-        <ContactSection />
+        <div className="mt-8 text-center">
+          <Button onClick={() => window.location.href = '/'} size="lg">
+            Contact Us
+          </Button>
+        </div>
       </div>
 
       {/* CTA Section */}
