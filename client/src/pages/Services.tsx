@@ -136,8 +136,15 @@ const serviceTypes = {
 
 export default function Services() {
   const [location] = useLocation();
-  const type = new URLSearchParams(location.split('?')[1]).get('type') || 'residential';
+  const searchParams = new URLSearchParams(location.split('?')[1]);
+  const type = searchParams.get('type');
   const hash = location.split('#')[1];
+
+  // Validate that type is one of our valid service types
+  if (!type || !['residential', 'commercial', 'industrial'].includes(type)) {
+    window.location.href = '/services?type=residential';
+    return null;
+  }
 
   const { data: business } = useQuery({
     queryKey: ['business'],
