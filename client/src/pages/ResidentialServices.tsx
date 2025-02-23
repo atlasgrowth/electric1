@@ -1,68 +1,47 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+
+import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useQuery } from "@tanstack/react-query";
 import { getBusinessData } from "@/lib/utils";
-import { Shield, Zap, Power, Wrench, HomeIcon, Phone, CheckCircle, BatteryCharging } from "lucide-react";
+import { Shield, Zap, Power, Wrench, HomeIcon, Phone, CheckCircle, BatteryCharging, Clock } from "lucide-react";
 import { Link } from "wouter";
+import ContactSection from "@/components/home/ContactSection";
+import Reviews from "@/components/home/Reviews";
 
 const serviceCategories = [
   {
     title: "Installation Services",
-    description: "Professional installation of electrical systems and equipment",
+    description: "Professional electrical installation solutions for your home",
     services: [
       {
         icon: Power,
-        title: "Panel Installation",
+        title: "Panel Upgrades",
         description: "Modern electrical panel installations and upgrades",
-        features: ["200-amp service upgrades", "Panel replacements", "Circuit additions"]
-      },
-      {
-        icon: BatteryCharging,
-        title: "EV Charging",
-        description: "Electric vehicle charging station installation",
-        features: ["Level 2 chargers", "Circuit installation", "Smart charging setup"]
-      },
-      {
-        icon: Zap,
-        title: "New Construction",
-        description: "Complete electrical systems for new builds",
-        features: ["Full home wiring", "Smart home integration", "Code compliance"]
-      }
-    ]
-  },
-  {
-    title: "Maintenance & Safety",
-    description: "Keep your electrical systems safe and efficient",
-    services: [
-      {
-        icon: Shield,
-        title: "Safety Inspections",
-        description: "Comprehensive electrical system evaluations",
-        features: ["Annual inspections", "Safety certifications", "Code compliance checks"]
+        features: ["200-amp service upgrades", "Circuit breaker installations", "Code compliance"]
       },
       {
         icon: HomeIcon,
-        title: "Preventive Care",
-        description: "Regular maintenance to prevent issues",
-        features: ["System testing", "Component updates", "Performance optimization"]
+        title: "Home Wiring",
+        description: "Complete home wiring and rewiring services",
+        features: ["New construction wiring", "Outlet installation", "Lighting circuits"]
       }
     ]
   },
   {
-    title: "Emergency & Repairs",
-    description: "Fast response when you need it most",
+    title: "Emergency & Maintenance",
+    description: "24/7 emergency services and regular maintenance",
     services: [
       {
-        icon: Wrench,
-        title: "24/7 Emergency",
-        description: "Round-the-clock emergency electrical services",
-        features: ["Immediate response", "Critical repairs", "Safety restoration"]
+        icon: Clock,
+        title: "Emergency Services",
+        description: "Round-the-clock emergency electrical support",
+        features: ["24/7 availability", "Fast response times", "Emergency repairs"]
       },
       {
-        icon: Power,
-        title: "Troubleshooting",
-        description: "Expert diagnosis and repair solutions",
-        features: ["Circuit issues", "Equipment failures", "Wiring problems"]
+        icon: Shield,
+        title: "Safety Inspections",
+        description: "Comprehensive electrical safety checks",
+        features: ["Annual inspections", "Safety upgrades", "Code compliance"]
       }
     ]
   }
@@ -90,62 +69,84 @@ export default function ResidentialServices() {
 
         <div className="container relative z-10 text-center text-white">
           <h1 className="text-5xl font-bold mb-6">
-            Residential Electrical Services
+            {business?.basic_info.name} Residential Services
           </h1>
-          <p className="text-xl mb-8 max-w-2xl mx-auto">
-            Professional electrical solutions for your home, delivering safety, reliability, and excellence in every service.
+          <p className="text-xl mb-8 max-w-3xl mx-auto">
+            Your trusted partner for comprehensive residential electrical solutions. With years of experience serving {business?.basic_info.city}, we deliver professional, reliable, and safe electrical services for your home.
           </p>
-          <div className="flex gap-4 justify-center">
-            <Button size="lg" variant="default" className="bg-primary hover:bg-primary/90">
-              <Phone className="mr-2 h-5 w-5" />
-              Contact Us
-            </Button>
-            <Button size="lg" variant="outline" className="bg-white/10 border-white text-white hover:bg-white hover:text-black">
-              View Services
-            </Button>
+          <div className="flex gap-6 justify-center">
+            <Link href="tel:${business?.basic_info.phone}">
+              <Button size="lg" variant="default" className="bg-primary hover:bg-primary/90">
+                <Phone className="mr-2 h-5 w-5" />
+                Call Now
+              </Button>
+            </Link>
+            <Link href="#contact">
+              <Button size="lg" variant="outline" className="bg-white/10 border-white text-white hover:bg-white hover:text-black">
+                Request a Quote
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
 
-      {/* Main Services Section */}
-      <section className="py-24 bg-gradient-to-b from-gray-900 to-black text-white">
-        <div className="container">
-          <h2 className="text-5xl font-bold text-center mb-16">Our Services</h2>
-          {serviceCategories.map((category, index) => (
-            <div key={index}>
-              <h3 className="text-4xl font-bold text-center mb-8">{category.title}</h3>
-              <p className="text-lg text-center mb-12">{category.description}</p>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {category.services.map((service, idx) => (
-                  <div key={idx} className="p-8 rounded-2xl bg-gray-800/50 backdrop-blur-sm hover:bg-gray-700/50 transition-all duration-300 border border-gray-700/50 group">
-                    <service.icon className="h-12 w-12 text-primary mb-6 transform group-hover:scale-110 transition-transform duration-300" />
+      {/* Service Categories */}
+      {serviceCategories.map((category, idx) => (
+        <section key={idx} className={`py-20 ${idx % 2 === 0 ? 'bg-white' : 'bg-gray-50'}`}>
+          <div className="container">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl font-bold mb-4">{category.title}</h2>
+              <p className="text-xl text-gray-600">{category.description}</p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {category.services.map((service, index) => (
+                <Card key={index} className="hover:shadow-xl transition-all duration-300">
+                  <CardContent className="p-8">
+                    <service.icon className="h-12 w-12 text-primary mb-6" />
                     <h3 className="text-2xl font-bold mb-4">{service.title}</h3>
-                    <p className="text-gray-300 mb-8 text-lg">{service.description}</p>
-                    <ul className="space-y-4">
-                      {service.features.map((feature, i) => (
-                        <li key={i} className="flex items-center gap-3 text-gray-200">
-                          <div className="h-2 w-2 bg-primary rounded-full" />
-                          <span className="group-hover:text-white transition-colors">{feature}</span>
+                    <p className="text-gray-600 mb-6">{service.description}</p>
+                    <ul className="space-y-3">
+                      {service.features.map((feature, idx) => (
+                        <li key={idx} className="flex items-center gap-3">
+                          <CheckCircle className="h-5 w-5 text-green-500" />
+                          <span>{feature}</span>
                         </li>
                       ))}
                     </ul>
-                  </div>
-                ))}
-              </div>
+                  </CardContent>
+                </Card>
+              ))}
             </div>
-          ))}
-        </div>
-      </section>
+          </div>
+        </section>
+      ))}
 
+      {/* Reviews Section */}
+      <Reviews />
+
+      {/* Contact Form Section */}
+      <div id="contact">
+        <ContactSection />
+      </div>
 
       {/* CTA Section */}
-      <section className="py-20 bg-primary text-white">
+      <section className="py-16 bg-primary text-white">
         <div className="container text-center">
           <h2 className="text-3xl font-bold mb-6">Ready to Get Started?</h2>
-          <p className="text-xl mb-8">Contact us today for a free consultation</p>
-          <Button size="lg" variant="outline" className="bg-white text-primary hover:bg-white/90">
-            Call {business?.basic_info.phone}
-          </Button>
+          <p className="text-xl mb-8">Contact {business?.basic_info.name} for expert residential electrical services</p>
+          <div className="flex gap-6 justify-center">
+            <Link href="tel:${business?.basic_info.phone}">
+              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary">
+                <Phone className="mr-2 h-5 w-5" />
+                {business?.basic_info.phone}
+              </Button>
+            </Link>
+            <Link href="#contact">
+              <Button size="lg" className="bg-white text-primary hover:bg-white/90">
+                Request Quote
+              </Button>
+            </Link>
+          </div>
         </div>
       </section>
     </div>
